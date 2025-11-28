@@ -1,5 +1,5 @@
 # SIM Hackathon 2025 (SCRUM Gang)
-Codebase repository for SIM-UOL CSSC Hackathon 2025 for group: SCRUM Gang
+Codebase repository for *SIM-UOL CSSC Hackathon 2025* for group: **SCRUM Gang**
 
 ## Nutrition Chatbot
 ### Problem Statement
