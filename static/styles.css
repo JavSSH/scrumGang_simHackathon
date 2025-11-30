@@ -1,5 +1,16 @@
+html {
+    /* Forces the vertical scrollbar to always be visible, preventing layout shifts */
+    overflow-y: scroll; 
+    /* Modern browsers only: reserves space without always showing the bar */
+    /* scrollbar-gutter: stable; */ 
+}
 
-/* Custom Scrollbar for Chat */
+body {
+    /* Ensure that body doesn't cause double scrollbars */
+    overflow-x: hidden;
+}
+
+/* Custom Scrollbar for Chat Window */
 .chat-scroll::-webkit-scrollbar {
     width: 6px;
 }
@@ -14,7 +25,7 @@
     background: #94a3b8;
 }
 
-/* Typing Animation */
+/* Animations */
 .typing-dot {
     animation: typing 1.4s infinite ease-in-out both;
 }
@@ -26,10 +37,10 @@
     40% { transform: scale(1); }
 }
 
-/* Float Animation for images */
 .float-anim {
     animation: float 6s ease-in-out infinite;
 }
+
 @keyframes float {
     0% { transform: translateY(0px); }
     50% { transform: translateY(-20px); }
