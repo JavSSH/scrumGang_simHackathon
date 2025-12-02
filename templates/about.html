@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <!-- Page Header -->
+    <div class="bg-white pt-32 pb-12 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">Why We Built NutriBot</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Separating fact from fiction in the world of nutrition.
+            </p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="py-16 bg-gray-50 min-h-[60vh]">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Problem Statement Section -->
+            <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12 overflow-hidden relative">
+                <!-- Decorative background decoration -->
+                <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-leaf-100 rounded-full blur-2xl opacity-50"></div>
+                
+                <div class="relative z-10">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-900">The Problem</h2>
+                    </div>
+                    
+                    <div class="prose prose-lg text-gray-600 leading-relaxed">
+                        <p class="mb-6">
+                            Social media is flooded with conflicting and unproven diet trends, making it hard to know what's actually healthy. 
+                        </p>
+                        <p class="mb-6">
+                            Viral myths like <span class="font-medium text-gray-900 bg-orange-50 px-2 py-0.5 rounded">"carbs are always bad"</span> or <span class="font-medium text-gray-900 bg-orange-50 px-2 py-0.5 rounded">"detox teas cleanse your body"</span> spread quickly, while evidence-based nutrition advice often gets overlooked.
+                        </p>
+                        <p class="font-medium text-gray-800 border-l-4 border-leaf-500 pl-4 py-1">
+                            This misinformation leads to unhealthy eating habits, wasted money on fad products, and potential long-term health consequences.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mission Statement -->
+            <div class="mt-12 text-center">
+                <h3 class="text-2xl font-semibold text-gray-900 mb-3">Our Mission</h3>
+                <p class="text-gray-600">
+                    To provide instant, science-backed nutritional guidance that empowers you to make healthy choices without the confusion.
+                </p>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
