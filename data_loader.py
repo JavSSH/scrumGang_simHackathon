@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-DATA_FOLDER = "data"
+DATA_FOLDER = "data" 
 
 def load_nutrition_data():
     dfs = []

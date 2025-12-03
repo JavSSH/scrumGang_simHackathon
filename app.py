@@ -35,11 +35,24 @@ def chat():
 
    
     try:
+          
+        if 'recipe' in user_text or 'protein' in user_text:
+            response = "How about a Grilled Salmon with Quinoa and Asparagus?"
+        elif 'calorie' in user_text:
+            response = "A medium banana has about 105 calories!"
+        elif 'pizza' in user_text or 'burger' in user_text:
+            response = "Yum! Remember to balance with fiber 🥗."
+        elif 'hello' in user_text or 'hey' in user_text or ' hi ' in f" {user_text} ":
+            response = "Hello! Ready to eat healthy today? 🍎"
+        else:
+            response = "I couldn’t find that food in my database. Try asking: 'calories in chicken rice'."
+
+        return jsonify({'response': response})
         result = rag.search(user_text)
         if result and result["food"] != "Unknown":
             return jsonify({
                 "response": f"Here’s what I found:\n\n"
-                            f"🍽️ **{result['food']}**\n"
+                            f"🍽️ {result['food']}\n"
                             f"🔥 Calories: {result['calories']}\n"
                             f"💪 Protein: {result['protein']}g\n"
                             f"🥔 Carbs: {result['carbohydrates']}g\n"
@@ -48,19 +61,7 @@ def chat():
     except:
         pass
 
-    
-    if 'recipe' in user_text or 'protein' in user_text:
-        response = "How about a Grilled Salmon with Quinoa and Asparagus?"
-    elif 'calorie' in user_text:
-        response = "A medium banana has about 105 calories!"
-    elif 'pizza' in user_text or 'burger' in user_text:
-        response = "Yum! Remember to balance with fiber 🥗."
-    elif 'hello' in user_text or 'hey' in user_text or ' hi ' in f" {user_text} ":
-        response = "Hello! Ready to eat healthy today? 🍎"
-    else:
-        response = "I couldn’t find that food in my database. Try asking: 'calories in chicken rice'."
-
-    return jsonify({'response': response})
+  
 
 
 if __name__ == "__main__":

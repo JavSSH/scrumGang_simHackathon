@@ -34,7 +34,7 @@ class NutritionRAG:
 
         return {
             "food": item.get(self.text_col, "Unknown"),
-            "calories": item.get("calories", "N/A"),
+            "calories": item.get("caloric value", "N/A"),
             "protein": item.get("protein", "N/A"),
             "fat": item.get("fat", "N/A"),
             "carbohydrates": item.get("carbohydrates", "N/A"),
