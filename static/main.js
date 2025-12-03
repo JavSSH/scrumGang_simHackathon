@@ -83,22 +83,55 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Reset Chat Function
     window.resetChat = function() {
-        if (chatMessages) {
-            chatMessages.innerHTML = `
-                <div class="flex items-start gap-2.5">
-                    <div class="w-8 h-8 bg-leaf-100 rounded-full flex items-center justify-center text-leaf-600 text-xs shrink-0">
-                        <i class="fa-solid fa-robot"></i>
+        chatMessages.innerHTML = `
+            <div class="flex items-start gap-2.5">
+                <div class="w-8 h-8 bg-leaf-100 rounded-full flex items-center justify-center text-leaf-600 text-xs shrink-0">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+                <div class="flex flex-col gap-1 w-full max-w-[320px]">
+                    <div class="flex items-center space-x-2 rtl:space-x-reverse">
+                        <span class="text-sm font-semibold text-gray-900">NutriBot</span>
                     </div>
-                    <div class="flex flex-col gap-1 w-full max-w-[320px]">
-                        <div class="flex items-center space-x-2 rtl:space-x-reverse">
-                            <span class="text-sm font-semibold text-gray-900">NutriBot</span>
-                        </div>
-                        <div class="flex flex-col leading-1.5 p-4 border-gray-200 bg-white rounded-e-xl rounded-es-xl shadow-sm">
-                            <p class="text-sm font-normal text-gray-900">Hi there! 👋 I'm your personal nutrition assistant. Tell me what you ate today, or ask me for a healthy recipe!</p>
-                        </div>
+                    <div class="flex flex-col leading-1.5 p-4 border-gray-200 bg-white rounded-e-xl rounded-es-xl shadow-sm">
+                        <p class="text-sm font-normal text-gray-900">Hi there! 👋 I'm your personal nutrition assistant. Tell me what you ate today, or ask me for a healthy recipe!</p>
                     </div>
                 </div>
-            `;
-        }
-    };
+            </div>
+        `;
+    }
+
+    // Logic: Simulate AI Response
+    function getBotResponse(userText) {
+        const text = userText.toLowerCase();
+        if (text.includes('hello') || text.includes('hi')) return "Hello! Ready to eat healthy today? 🍎";
+        if (text.includes('recipe') || text.includes('breakfast') || text.includes('dinner')) return "How about a Grilled Salmon with Quinoa and Asparagus? It's rich in Omega-3 and high protein! Would you like the full recipe?";
+        if (text.includes('calorie') || text.includes('fat') || text.includes('protein')) return "I can help calculate that. A medium banana usually has about 105 calories. Are you tracking macros today?";
+        if (text.includes('pizza') || text.includes('burger')) return "Tasty choice! Remember, balance is key. Maybe add a side salad to get some fiber? 🥗";
+        if (text.includes('avocado')) return "Yes! Avocado is a great source of healthy monounsaturated fats. It's high calorie but very nutritious.";
+        return "That sounds interesting! I'm learning more about nutrition every day. Could you tell me more about your diet goals?";
+    }
+
+    // Event: Handle Chat Submit
+    chatForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const text = chatInput.value.trim();
+        if (!text) return;
+
+        // 1. Add User Message
+        appendMessage(text, true);
+        chatInput.value = '';
+
+        // 2. Show Typing Indicator
+        typingIndicator.classList.remove('hidden');
+        scrollToBottom();
+
+        // 3. Simulate Network Delay
+        // hi 
+        setTimeout(() => {
+            typingIndicator.classList.add('hidden');
+            const response = getBotResponse(text);
+            appendMessage(response, false);
+        }, 1500);
+    });
+
 });
