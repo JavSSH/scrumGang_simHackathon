@@ -6,7 +6,7 @@ DATA_FOLDER = "data"
 def load_nutrition_data():
     dfs = []
 
-    # Recursively find all CSV files in DATA_FOLDER and subfolders
+    
     for root, dirs, files in os.walk(DATA_FOLDER):
         for file in files:
             if file.endswith(".csv"):
@@ -22,10 +22,10 @@ def load_nutrition_data():
 
     df = pd.concat(dfs, ignore_index=True)
 
-    # unify column names
+    
     df.columns = df.columns.str.lower().str.strip()
 
-    # create a search field if dataset contains 'description' or 'name'
+    
     if "description" in df.columns:
         df["search_text"] = df["description"].fillna("").str.lower()
     elif "name" in df.columns:
