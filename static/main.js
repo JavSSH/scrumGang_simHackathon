@@ -194,6 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollToBottom();
 
         // 3. Simulate Network Delay
+        // hi 
         setTimeout(() => {
             typingIndicator.classList.add('hidden');
             const response = getBotResponse(text);
