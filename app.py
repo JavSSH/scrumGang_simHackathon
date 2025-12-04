@@ -33,37 +33,75 @@ def chat():
     data = request.get_json()
     user_text = data.get('message', '').lower()
 
-   
     try:
-          
-        if 'recipe' in user_text or 'protein' in user_text:
-            response = "How about a Grilled Salmon with Quinoa and Asparagus?"
-        elif 'calorie' in user_text:
-            response = "A medium banana has about 105 calories!"
-        elif 'pizza' in user_text or 'burger' in user_text:
-            response = "Yum! Remember to balance with fiber 🥗."
-        elif 'hello' in user_text or 'hey' in user_text or ' hi ' in f" {user_text} ":
-            response = "Hello! Ready to eat healthy today? 🍎"
-        else:
-            response = "I couldn’t find that food in my database. Try asking: 'calories in chicken rice'."
-
-        return jsonify({'response': response})
-        result = rag.search(user_text)
-        if result and result["food"] != "Unknown":
+        if any(goal in user_text for goal in ["lose weight", "weight loss", "slim down"]):
             return jsonify({
-                "response": f"Here’s what I found:\n\n"
-                            f"🍽️ {result['food']}\n"
-                            f"🔥 Calories: {result['calories']}\n"
-                            f"💪 Protein: {result['protein']}g\n"
-                            f"🥔 Carbs: {result['carbohydrates']}g\n"
-                            f"🧈 Fat: {result['fat']}g"
+                "response": (
+                    "To support weight loss, choose high-fiber foods such as vegetables, fruits, and whole grains.\n"
+                    "Try swapping sugary drinks with water or unsweetened tea. "
+                    "I can also check calories for you — ask me 'calories in chicken rice'."
+                )
             })
-    except:
-        pass
 
-  
+        if any(goal in user_text for goal in ["gain muscle", "build muscle", "bulk"]):
+            return jsonify({
+                "response": (
+                    "To build muscle, aim for protein with every meal.\n"
+                    "Great options include chicken breast, tofu, eggs, Greek yogurt, or salmon.\n"
+                    "Ask me about any food to get protein details!"
+                )
+            })
+
+        if "low carb" in user_text or "keto" in user_text:
+            return jsonify({
+                "response": (
+                    "For a low-carb pattern, choose foods like eggs, fish, leafy vegetables, tofu, "
+                    "and nuts.\n"
+                    "Remember: evidence shows healthy fats and fiber are important even on low-carb diets."
+                )
+            })
+
+        if 'recipe' in user_text or 'protein' in user_text:
+            return jsonify({"response": "How about a Grilled Salmon with Quinoa and Asparagus?"})
+        
+        if 'banana' in user_text:
+            return jsonify({"response": "A medium banana has about 105 calories!"})
+        
+        if 'pizza' in user_text or 'burger' in user_text:
+            return jsonify({"response": "Yum! Enjoy it in moderation. Add a salad for extra fiber!"})
+        
+        if 'hello' in user_text or 'hey' in user_text or ' hi ' in f" {user_text} ":
+            return jsonify({"response": "Hello! Ready to eat healthy today? "})
+        result = rag.search(user_text)
+
+        if result and result["food"] != "Unknown":
+            evidence_statement = (
+                "This information is based on standard nutritional databases used in healthcare and dietetics."
+            )
+
+            return jsonify({
+                "response":
+                    f"Here’s what I found:\n\n"
+                    f"**{result['food']}**\n"
+                    f"Calories: {result['calories']}\n"
+                    f"Protein: {result['protein']}g\n"
+                    f"Carbs: {result['carbohydrates']}g\n"
+                    f"Fat: {result['fat']}g\n\n"
+                    f"*{evidence_statement}*"
+            })
 
 
-if __name__ == "__main__":
+        return jsonify({
+            "response": (
+                "I couldn’t find that food. Try asking: 'calories in chicken rice' or "
+                "'is brown rice healthier than white rice?'."
+            )
+        })
+
+    except Exception as e:
+        return jsonify({"response": "Oops! Something went wrong."})
+
+
+if name == "main":
     print("STEP 6: Starting Flask server...")
     app.run(debug=True, use_reloader=True)
