@@ -102,6 +102,6 @@ def chat():
         return jsonify({"response": "Oops! Something went wrong."})
 
 
-if name == "main":
+if __name__ == "__main__":
     print("STEP 6: Starting Flask server...")
     app.run(debug=True, use_reloader=True)
