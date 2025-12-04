@@ -127,7 +127,7 @@ def chat():
             return jsonify({
                 "response":
                     f"Here’s what I found:\n\n"
-                    f"**{result['food']}**\n"
+                    f"{result['food']}\n"
                     f"Calories: {result['calories']}\n"
                     f"Protein: {result['protein']}g\n"
                     f"Carbs: {result['carbohydrates']}g\n"
