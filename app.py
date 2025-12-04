@@ -13,11 +13,13 @@ print("STEP 3: Data loaded!")
 print("STEP 4: Initializing RAG...")
 rag = NutritionRAG(df)
 print("STEP 5: RAG ready!")
+
 # Main/Home Page
 @app.route("/")
 def index():
     return render_template("index.html")
 
+# About Page
 @app.route("/about")
 def about():
     return render_template("about.html")
@@ -75,10 +77,10 @@ def chat():
             return jsonify({
                 "response": (
                     "For healthy weight loss:\n"
-                    "1)Fill half your plate with vegetables\n"
-                    "2)Choose whole grains for fiber\n"
-                    "3)Eat lean protein like chicken, eggs, tofu\n"
-                    "4)Reduce sugary drinks\n\n"
+                    "1) Fill half your plate with vegetables\n"
+                    "2) Choose whole grains for fiber\n"
+                    "3) Eat lean protein like chicken, eggs, tofu\n"
+                    "4) Reduce sugary drinks\n\n"
                     "Ask me the calories of any food!"
                 )
             })
@@ -87,9 +89,9 @@ def chat():
             return jsonify({
                 "response": (
                     "To gain muscle:\n"
-                    "1)Aim for 1.2 to 2.0 g of protein per kg of body weight\n"
-                    "2)Include protein in every meal (chicken, tofu, fish, Greek yogurt)\n"
-                    "3)Combine with strength training\n\n"
+                    "1) Aim for 1.2 to 2.0 g of protein per kg of body weight\n"
+                    "2) Include protein in every meal (chicken, tofu, fish, Greek yogurt)\n"
+                    "3) Combine with strength training\n\n"
                     "Want protein info for a food?"
                 )
             })
@@ -98,9 +100,9 @@ def chat():
             return jsonify({
                 "response": (
                     "For a low-carb pattern:\n"
-                    "1)Focus on eggs, tofu, fish, meat\n"
-                    "2)Include fiber from leafy vegetables\n"
-                    "3)Avoid processed 'keto snacks' as they're often high in saturated fat.\n\n"
+                    "1) Focus on eggs, tofu, fish, meat\n"
+                    "2) Include fiber from leafy vegetables\n"
+                    "3) Avoid processed 'keto snacks' as they're often high in saturated fat.\n\n"
                     "I can check carbs for any food!"
                 )
             })
