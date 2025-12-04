@@ -1,0 +1,6 @@
+# Python cache files - recursive pattern
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+*.py[cod]
